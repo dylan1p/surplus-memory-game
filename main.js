@@ -57,7 +57,7 @@ const Root = () => {
 
       const isMatch = activeItems[0]().value === activeItems[1]().value;
 
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         S.freeze(() => {
           activeItems[0]({
             ...activeItems[0](),
@@ -72,6 +72,8 @@ const Root = () => {
           });
         });
       }, 500);
+
+      S.cleanup(() => clearTimeout(timeout));
     });
 
     return (
