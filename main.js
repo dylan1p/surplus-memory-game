@@ -37,16 +37,9 @@ const Root = () => {
   });
 
   router.add("/start/rows/:rows/columns/:columns", ({ rows, columns }) => {
-    const board = new Array((columns * rows) / 2)
+    const board = new Array(columns * rows)
       .fill()
-      .reduce(
-        (acc, curr, index) => [
-          ...acc,
-          S.data({ value: index }),
-          S.data({ value: index })
-        ],
-        []
-      )
+      .map((_, i) => S.data({value: Math.floor(i / 2)}))
       .sort(() => Math.random() - 0.5);
 
     let activeItems;
